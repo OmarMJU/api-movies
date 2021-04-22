@@ -82,6 +82,21 @@ function moviesAPI (app) {
             next(error);
         }
     });
+
+    // Método para actualizar la pelicula de forma parcial.
+    router.patch("/:movieId", async function (req, res, next) {
+        const { movieId } = req.params;
+
+        try {
+            const updatePartialMovie = await moviesService.updatePatchMovie({ movieId });
+            res.status(200).json({
+                data: updatePartialMovie,
+                message: "muvie update partial"
+            });
+        } catch (error) {
+            next(error);
+        }
+    });
 }
 
 module.exports  = moviesAPI;

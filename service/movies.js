@@ -30,6 +30,12 @@ class MoviesService {
         const deleteMovieId = await Promise.resolve(moviesMock[0].id);
         return deleteMovieId;
     }
+
+    // Para actualizar una pelicula de forma parcial.
+    async updatePatchMovie() {
+        const updatePartialMovie = await Promise.resolve(moviesMock[0].id);
+        return updatePartialMovie;
+    }
 }
 
 module.exports = MoviesService;
