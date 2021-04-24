@@ -24,7 +24,7 @@ function moviesAPI (app) {
 
     // Cuando se consulta la URL "/:movieId" se consulta una película específica.
     router.get("/:movieId", async function (req, res, next) {
-        const { movieId } = req.params;
+        const { movieId } = req.param;
 
         try {
             const movie = await moviesService.getMovie({ movieId });
@@ -55,7 +55,7 @@ function moviesAPI (app) {
     // Método para actualizar una película.
     router.put("/:movieId", async function (req, res, next) {
         const { body: movie } = req;
-        const { movieId } = req.params;
+        const { movieId } = req.param;
 
         try {
             const updateMovie = await moviesService.updateMovie({ movieId, movie });
@@ -70,28 +70,13 @@ function moviesAPI (app) {
 
     // Método para borrar una película.
     router.delete("/:movieId", async function (req, res, next) {
-        const { movieId } = req.params;
+        const { movieId } = req.param;
 
         try {
             const deleteMovie = await moviesService.deleteMovie({ movieId });
             res.status(200).json({
                 data: deleteMovie,
                 message: "movie deleted"
-            });
-        } catch (error) {
-            next(error);
-        }
-    });
-
-    // Método para actualizar la pelicula de forma parcial.
-    router.patch("/:movieId", async function (req, res, next) {
-        const { movieId } = req.params;
-
-        try {
-            const updatePartialMovie = await moviesService.updatePatchMovie({ movieId });
-            res.status(200).json({
-                data: updatePartialMovie,
-                message: "muvie update partial"
             });
         } catch (error) {
             next(error);

@@ -1,40 +1,40 @@
-const { moviesMock } = require("../utils/mocks/movies");
+const MongoLib = require("../lib/mongodb");
 
 class MoviesService {
+    constructor() {
+        this.collection = "movies";
+        this.mongoDB = new MongoLib();
+    }
+
     // Para consultar todas las películas.
-    async getMovies() {
-        const movies = await Promise.resolve(moviesMock);
-        return movies;
+    async getMovies({ tags }) {
+        const query = tags && { tags: { $in: tags } };
+        const movies = await this.mongoDB.getAll(this.collection, query);
+        return movies || [];
     }
 
     // Para consiltar una película.
-    async getMovie() {
-        const movie = await Promise.resolve(moviesMock[0]);
+    async getMovie({ movieId }) {
+        const movie = await this.mongoDB.get(this.collection, movieId);
         return movie;
     }
 
     // Para crear una película.
-    async createMovie() {
-        const createMovieId = await Promise.resolve(moviesMock[0].id);
+    async createMovie({ movie }) {
+        const createMovieId = await this.mongoDB.create(this.collection, movie);
         return createMovieId;
     }
 
     // Para actualizar una película.
-    async updateMovie() {
-        const updateMovieId = await Promise.resolve(moviesMock[0].id);
+    async updateMovie({ movieId, movie } = {}) {
+        const updateMovieId = await this.mongoDB.update(this.collection, movieId, movie);
         return updateMovieId;
     }
 
     // Para mover una película.
-    async deleteMovie() {
-        const deleteMovieId = await Promise.resolve(moviesMock[0].id);
+    async deleteMovie({ movieId }) {
+        const deleteMovieId = await this.mongoDB.delete(this.collection, movieId);
         return deleteMovieId;
-    }
-
-    // Para actualizar una pelicula de forma parcial.
-    async updatePatchMovie() {
-        const updatePartialMovie = await Promise.resolve(moviesMock[0].id);
-        return updatePartialMovie;
     }
 }
 
