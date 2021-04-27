@@ -55,7 +55,7 @@ function moviesAPI (app) {
     // Método para actualizar una película.
     router.put("/:movieId", async function (req, res, next) {
         const { body: movie } = req;
-        const { movieId } = req.param;
+        const { movieId } = req.params;
 
         try {
             const updateMovie = await moviesService.updateMovie({ movieId, movie });
