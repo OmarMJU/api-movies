@@ -24,11 +24,9 @@ function moviesAPI (app) {
 
     // Cuando se consulta la URL "/:movieId" se consulta una película específica.
     router.get("/:movieId", async function (req, res, next) {
-        const { movieId } = req.param;
+        const { movieId } = req.params;
 
         try {
-            console.log("Desde el router", {movieId});
-
             const movie = await moviesService.getMovie({ movieId });
             res.status(200).json({
                 data: movie,
