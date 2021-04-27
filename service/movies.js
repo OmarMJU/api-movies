@@ -15,8 +15,10 @@ class MoviesService {
 
     // Para consiltar una película.
     async getMovie({ movieId }) {
+        console.log("desde el service", {movieId});
+
         const movie = await this.mongoDB.get(this.collection, movieId);
-        return movie;
+        return movie || {};
     }
 
     // Para crear una película.

@@ -9,7 +9,7 @@ function moviesAPI (app) {
 
     // Cuando se consulta la URL "/"" regresa TODAS las peliculas.
     router.get("/", async function (req, res, next) {
-        const tags = req.query;
+        const { tags } = req.query;
 
         try {
             const movies = await moviesService.getMovies({ tags });
@@ -27,6 +27,8 @@ function moviesAPI (app) {
         const { movieId } = req.param;
 
         try {
+            console.log("Desde el router", {movieId});
+
             const movie = await moviesService.getMovie({ movieId });
             res.status(200).json({
                 data: movie,
