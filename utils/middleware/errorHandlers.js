@@ -1,8 +1,9 @@
+const boom = require("@hapi/boom");
 const { config } = require("../../config/index");
 
 function withErrorStack (error, stack) {
     if (config.dev) {
-        return { error, stack };
+        return { ...error, stack };
     }
 
     return error;
@@ -13,9 +14,18 @@ function logErrors (error, request, response, next) {
     next(error);
 }
 
-function errorHandler (error, requiest, response, next) { // eslint-disable-line
-    response.status(error.status || 500);
-    response.json(withErrorStack(error.message, error.stack));
+function wrapError (err, req, res, next) {
+    if(!err.isBoom) {
+        next(boom.badImplementation(err));
+    }
+
+    next(err);
 }
 
-module.exports = { logErrors, errorHandler };
+function errorHandler (error, requiest, response, next) { // eslint-disable-line
+    const { output: { statusCodee, payload } } = error;
+    response.status(statusCodee);
+    response.json(withErrorStack(payload, error.stack));
+}
+
+module.exports = { logErrors, wrapError, errorHandler };
