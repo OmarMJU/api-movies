@@ -13,6 +13,7 @@ function moviesAPI (app) {
 
         try {
             const movies = await moviesService.getMovies({ tags });
+            // throw new Error("Controled error to getting movies!!");
             res.status(200).json({
                 data: movies,
                 message: "Movies listed"
