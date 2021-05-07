@@ -1,8 +1,13 @@
 const boom = require("@hapi/boom");
 const joi = require("@hapi/joi");
+const optionsError = {
+    abortEarly: false, // include all errors
+    allowUnknown: true, // ignore unknown props
+    stripUnknown: true // remove unknown props
+};
 
 function validate(data, schema) {
-    const { error } = joi.object(schema).validate(data, { errors: { stack: true } });
+    const { error } = joi.object(schema).validate(data, optionsError);
     // const { error } = schema.validate(data, { errors: { stack: true } });
     return error;
 }
