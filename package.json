@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "DEBUG=app:* nodemon index",
     "start": "NODE_ENV=production node index",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "mocha --exit"
   },
   "keywords": [],
   "author": "",

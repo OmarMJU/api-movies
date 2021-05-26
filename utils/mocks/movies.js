@@ -1001,4 +1001,22 @@ const moviesMock = [
     {"id":"1443f0fd-88fe-4a9f-9196-78692ef1161c","title":"Santa Claus: The Movie","year":2005,"cover":"http://dummyimage.com/224x154.png/dddddd/000000","desciption":"Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.","duration":1986,"contentRating":"PG-13","source":"https://psu.edu/placerat/ante/nulla.js","tag":["Action|Drama|Thriller","Drama","Comedy|Drama"]}
 ];
 
-module.exports = { moviesMock }
+function filteredMovieMock(tag) {
+    return moviesMock.filter(movie => movie.tags.includes(tag));
+}
+
+class MoviesServiceMock {
+    async getMovies() {
+        return Promise.resolve(moviesMock);
+    }
+
+    async createMovie() {
+        return Promise.resolve(moviesMock[0]);
+    }
+}
+
+module.exports = { 
+    moviesMock,
+    filteredMovieMock,
+    MoviesServiceMock
+}
