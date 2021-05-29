@@ -2,3 +2,7 @@ node_modules/
 .husky/
 .eslintcache
 .DS_Store
+
+# Se ignoran carpetas para los tes.
+.nyc_output/
+coverage/
