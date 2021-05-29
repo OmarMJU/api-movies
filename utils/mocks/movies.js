@@ -1,5 +1,5 @@
 const moviesMock = [
-    {"id":"9bff4d94-968e-4860-8c13-c73efdae15b4","title":"Forget Me Not","year":1991,"cover":"http://dummyimage.com/137x134.png/cc0000/ffffff","desciption":"Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.","duration":2020,"contentRating":"PG","source":"https://discovery.com/quam/suspendisse.png","tag":["Comedy|Western"]},
+    {"id":"6083b0b2b43c030713177575","title":"Forget Me Not","year":1991,"cover":"http://dummyimage.com/137x134.png/cc0000/ffffff","desciption":"Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.","duration":2020,"contentRating":"PG","source":"https://discovery.com/quam/suspendisse.png","tag":["Comedy|Western"]},
     {"id":"cd7fab63-f20b-4169-8ceb-032475445490","title":"Queen: Days of Our Lives","year":1984,"cover":"http://dummyimage.com/152x235.png/cc0000/ffffff","desciption":"Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.","duration":1923,"contentRating":"NC-17","source":"http://webs.com/in/hac/habitasse/platea.js","tag":["Comedy|Sci-Fi","Action|Comedy|Drama|Western","Action|Adventure|Drama"]},
     {"id":"304cda9b-a7f4-4507-b895-927a09bf5204","title":"Braveheart","year":1992,"cover":"http://dummyimage.com/200x240.png/cc0000/ffffff","desciption":"Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.","duration":1897,"contentRating":"PG-13","source":"http://1688.com/justo/maecenas.png","tag":["Drama|War","Adventure|Children|Drama","Comedy","Comedy"]},
     {"id":"ebe27b4c-076d-433e-85e2-7dcfe2ed48bb","title":"Tex","year":2005,"cover":"http://dummyimage.com/110x137.png/5fa2dd/ffffff","desciption":"Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.","duration":1976,"contentRating":"G","source":"http://baidu.com/nibh/fusce/lacus/purus.html","tag":["Action|Comedy|Romance","Comedy","Crime|Drama","Drama|Romance","Comedy|Drama"]},
@@ -1008,6 +1008,10 @@ function filteredMovieMock(tag) {
 class MoviesServiceMock {
     async getMovies() {
         return Promise.resolve(moviesMock);
+    }
+
+    async getMovie() {
+        return Promise.resolve(moviesMock[0]);
     }
 
     async createMovie() {
