@@ -12,7 +12,8 @@ describe("routes - movies", function () {
     // Crea un servidor para Test, no es un servidor real.
     const request = testServer(route);
 
-    describe.only("GET/movies",  function() {
+    // Se crean TEST para las rutas con el método GET.
+    describe("GET/movies",  function() {
         it("Hace el test solo para la respuesta del servidor", function(done) {
             request.get("/api/movies").expect(200, done);
         });
@@ -39,6 +40,13 @@ describe("routes - movies", function () {
 
                 done();
             });
+        });
+    });
+
+    // Se crean TEST para la rutas con el método POST.
+    describe.only("POST/movies", function() {
+        it("Se realiza test para respuesta a POST /", function(done) {
+            request.post("/api/movies/").expect(201, done);
         });
     });
 });
