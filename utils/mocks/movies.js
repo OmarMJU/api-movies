@@ -1015,7 +1015,7 @@ class MoviesServiceMock {
     }
 
     async createMovie() {
-        return Promise.resolve(moviesMock[0]);
+        return Promise.resolve(moviesMock[0].id);
     }
 }
 

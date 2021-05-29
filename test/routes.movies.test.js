@@ -44,9 +44,20 @@ describe("routes - movies", function () {
     });
 
     // Se crean TEST para la rutas con el método POST.
-    describe.only("POST/movies", function() {
+    describe("POST/movies", function() {
         it("Se realiza test para respuesta a POST /", function(done) {
-            request.post("/api/movies/").expect(201, done);
+            request.post("/api/movies").expect(201, done);
+        });
+
+        it("Se realiza test para respuesta a POST con body", function(done) {
+            request.post("/api/movies").send(moviesMock[0]).end((err, res) => {
+                assert.deepEqual(res.body, {
+                    data: moviesMock[0].id,
+                    message: "Movie created"
+                });
+
+                done();
+            });
         });
     });
 });
