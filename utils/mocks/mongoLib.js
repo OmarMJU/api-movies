@@ -22,6 +22,14 @@ class MongoLibMock {
     get(collection, id) {
         return getOneStub(collection, id);
     }
+
+    update(collection, id) {
+        return createSub(collection, id);
+    }
+
+    delete(collection, id) {
+        return createSub(collection, id);
+    }
 }
 
 module.exports = {

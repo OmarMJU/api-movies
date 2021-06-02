@@ -1,6 +1,6 @@
 const assert = require("assert");
 const proxyquire = require("proxyquire");
-const { getAllStub, getOneStub, MongoLibMock } = require("../utils/mocks/mongoLib");
+const { getAllStub, getOneStub, MongoLibMock, createSub } = require("../utils/mocks/mongoLib");
 const { moviesMock } = require("../utils/mocks/movies");
 
 describe("services - movies", function() {
@@ -45,6 +45,30 @@ describe("services - movies", function() {
             const result = await moviesServices.createMovie({});
             const expected = moviesMock[0].id;
             assert.deepEqual(result, expected)
+        });
+
+        // TEST para el metodo updateMovie().
+        it("Test para el llamado del metodo updateMovie()", async function() {
+            await moviesServices.updateMovie({});
+            assert.strictEqual(createSub.called, true);
+        });
+
+        it("Test para la respuesta del metodo updateMovies()", async function() {
+            const result = await moviesServices.updateMovie({});
+            const expected = moviesMock[0].id;
+            assert.deepEqual(result, expected);
+        });
+
+        // TEST para el método deleteMovies()
+        it("Test para el llamad0 del metodo deleteMovie()", async function() {
+            await moviesServices.deleteMovie({});
+            assert.strictEqual(createSub.called, true);
+        });
+
+        it("Test para la respuesta del metodo deleteMovies()", async function() {
+            const result = await moviesServices.deleteMovie({});
+            const expected = moviesMock[0].id;
+            assert.deepEqual(result, expected);
         });
     });
 });
